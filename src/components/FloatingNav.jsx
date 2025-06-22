@@ -20,12 +20,11 @@ const FloatingNav = () => {
       const scrollPosition = window.scrollY + 100;
 
       sections.forEach((section) => {
-        const element = section as HTMLElement;
-        const offsetTop = element.offsetTop;
-        const height = element.offsetHeight;
+        const offsetTop = section.offsetTop;
+        const height = section.offsetHeight;
 
         if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
-          setActiveSection(element.id);
+          setActiveSection(section.id);
         }
       });
 
@@ -36,7 +35,7 @@ const FloatingNav = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -44,40 +43,31 @@ const FloatingNav = () => {
   };
 
   return (
-    <div
-      className={`fixed left-4 top-1/2 transform -translate-y-1/2 z-40 transition-all duration-500 hidden lg:block ${
-        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
-      }`}
-    >
-      <nav className="flex flex-col space-y-3 bg-white/10 backdrop-blur-xl p-3 rounded-2xl border border-cyan-500/30">
+    <div className={`floating-nav ${!isVisible ? 'hidden' : ''}`}>
+      <nav className="nav-container">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`group relative p-3 rounded-xl transition-all duration-300 ${
-                activeSection === item.id
-                  ? 'bg-cyan-500 text-white scale-110'
-                  : 'text-white/70 hover:text-white hover:bg-white/10 hover:scale-105'
-              }`}
+              className={`nav-button ${activeSection === item.id ? 'active' : ''}`}
               title={item.label}
             >
               <Icon size={18} />
-              <span className="absolute left-full ml-4 bg-black/80 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+              <span className="nav-tooltip">
                 {item.label}
               </span>
             </button>
           );
         })}
         
-        {/* Social Links */}
-        <div className="border-t border-white/20 pt-3 mt-3">
+        <div className="social-divider">
           <a
             href="https://github.com/Ajayraj1515"
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-3 text-white/70 hover:text-white hover:bg-white/10 hover:scale-105 rounded-xl transition-all duration-300"
+            className="social-link"
             title="GitHub"
           >
             <Github size={18} />
@@ -86,7 +76,7 @@ const FloatingNav = () => {
             href="https://www.linkedin.com/in/dhamoji-ajayraj-kattina/"
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-3 text-white/70 hover:text-white hover:bg-white/10 hover:scale-105 rounded-xl transition-all duration-300 mt-2"
+            className="social-link"
             title="LinkedIn"
           >
             <Linkedin size={18} />

@@ -23,7 +23,7 @@ const Projects = () => {
         "Dark/Light Theme Toggle",
         "Saved Videos Feature"
       ],
-      color: "from-red-500 to-rose-500"
+      color: "linear-gradient(to right, #ef4444, #f43f5e)"
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ const Projects = () => {
         "Responsive Design",
         "API Integration"
       ],
-      color: "from-blue-500 to-cyan-500"
+      color: "linear-gradient(to right, #3b82f6, #06b6d4)"
     },
     {
       id: 3,
@@ -61,7 +61,7 @@ const Projects = () => {
         "One-click Article Access",
         "Modern Styling"
       ],
-      color: "from-green-500 to-emerald-500"
+      color: "linear-gradient(to right, #22c55e, #10b981)"
     },
     {
       id: 4,
@@ -80,7 +80,7 @@ const Projects = () => {
         "Full-stack Integration",
         "Creative UI Design"
       ],
-      color: "from-indigo-500 to-purple-500"
+      color: "linear-gradient(to right, #6366f1, #8b5cf6)"
     },
     {
       id: 5,
@@ -99,182 +99,171 @@ const Projects = () => {
         "Modern UI/UX",
         "Best Practices"
       ],
-      color: "from-amber-500 to-orange-500",
+      color: "linear-gradient(to right, #f59e0b, #ea580c)",
       isComingSoon: true
     }
   ];
 
   const ProjectModal = ({ project, onClose }) => (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-slate-900/95 backdrop-blur-xl rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-white/20">
-        <div className="relative">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-white/70 hover:text-white z-10 interactive"
-          >
-            <ArrowLeft size={24} />
-          </button>
-          
-          <div className={`h-64 bg-gradient-to-r ${project.color} relative overflow-hidden`}>
-            <img 
-              src={project.image} 
-              alt={project.title}
-              className="w-full h-full object-cover opacity-30"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-4xl font-bold text-white text-center">{project.title}</h2>
+    <div className="project-modal">
+      <div className="modal-content">
+        <button
+          onClick={onClose}
+          className="modal-close"
+        >
+          <ArrowLeft size={24} />
+        </button>
+        
+        <div className="modal-header" style={{ background: project.color }}>
+          <img 
+            src={project.image} 
+            alt={project.title}
+          />
+          <div className="modal-title">
+            {project.title}
+            {project.isComingSoon && <Clock style={{ marginLeft: '16px' }} size={32} />}
+          </div>
+        </div>
+
+        <div className="modal-body">
+          <div className="modal-grid">
+            <div className="modal-section">
+              <h3>About This Project</h3>
+              <p className="modal-text">{project.longDescription}</p>
+              
+              {!project.isComingSoon && (
+                <div className="modal-buttons">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modal-button"
+                  >
+                    View Live <ArrowRight size={16} />
+                  </a>
+                </div>
+              )}
+              
               {project.isComingSoon && (
-                <Clock className="ml-4 text-white" size={32} />
+                <div className="coming-soon-notice">
+                  <p className="coming-soon-text">🚀 Exciting things are coming! Stay tuned for updates.</p>
+                </div>
               )}
             </div>
-          </div>
 
-          <div className="p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4">About This Project</h3>
-                <p className="text-gray-300 mb-6 leading-relaxed">{project.longDescription}</p>
-                
-                {!project.isComingSoon && (
-                  <div className="flex gap-4 mb-6">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="interactive bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 flex items-center gap-2"
-                    >
-                      View Live <ArrowRight size={16} />
-                    </a>
-                  </div>
-                )}
-                
-                {project.isComingSoon && (
-                  <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-lg p-4 mb-6">
-                    <p className="text-amber-300 font-semibold">🚀 Exciting things are coming! Stay tuned for updates.</p>
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4">Key Features</h3>
-                <ul className="space-y-2 mb-6">
+            <div className="modal-section">
+              <h3>Key Features</h3>
+              <div className="features-list">
+                <ul>
                   {project.features.map((feature, index) => (
-                    <li key={index} className="text-gray-300 flex items-center gap-2">
-                      <span className="text-orange-400">•</span>
-                      {feature}
-                    </li>
+                    <li key={index}>{feature}</li>
                   ))}
                 </ul>
+              </div>
 
-                <h3 className="text-2xl font-bold text-white mb-4">Technologies Used</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm border border-orange-500/30">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              <h3>Technologies Used</h3>
+              <div className="tech-badges">
+                {project.tech.map((tech) => (
+                  <span key={tech} className="tech-badge-modal">
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
-
-            {!project.isComingSoon && (
-              <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
-                <h3 className="text-xl font-bold text-white mb-3">💡 Improvement Suggestions</h3>
-                <textarea
-                  placeholder="Share your thoughts on how this project could be improved..."
-                  className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors duration-300"
-                  rows={3}
-                />
-                <button className="mt-3 bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-2 rounded-lg text-sm hover:scale-105 transition-all duration-300 interactive">
-                  Submit Feedback
-                </button>
-              </div>
-            )}
           </div>
+
+          {!project.isComingSoon && (
+            <div className="feedback-section">
+              <h3>💡 Improvement Suggestions</h3>
+              <textarea
+                placeholder="Share your thoughts on how this project could be improved..."
+                className="feedback-textarea"
+                rows={3}
+              />
+              <button className="feedback-button">
+                Submit Feedback
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            Featured <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">Projects</span>
+    <section id="projects" className="section">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">
+            Featured <span style={{ background: 'linear-gradient(to right, #fb923c, #dc2626)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Projects</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-6"></div>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <div style={{ background: 'linear-gradient(to right, #ea580c, #dc2626)' }} className="section-divider"></div>
+          <p className="section-subtitle">
             Showcasing real-world applications built with modern technologies and best practices
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {projects.map((project, index) => (
+        <div className="projects-grid">
+          {projects.map((project) => (
             <div 
               key={project.id}
-              className={`group bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 transform hover:scale-105 transition-all duration-500 interactive cursor-pointer ${
-                project.isComingSoon ? 'border-amber-500/30' : ''
-              }`}
+              className={`project-card ${project.isComingSoon ? 'coming-soon' : ''}`}
               onClick={() => setSelectedProject(project)}
             >
-              <div className="relative overflow-hidden">
+              <div className="project-image">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-80 group-hover:opacity-60 transition-opacity duration-300`}></div>
-                <div className="absolute top-4 right-4">
+                <div className="project-overlay" style={{ background: project.color }}></div>
+                <div className="project-badge">
                   {project.isComingSoon ? (
-                    <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm flex items-center gap-2">
+                    <>
                       <Clock size={14} />
                       Coming Soon
-                    </div>
+                    </>
                   ) : (
-                    <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm">
-                      {project.tech[0]}
-                    </span>
+                    project.tech[0]
                   )}
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-orange-300 text-sm mb-3">{project.subtitle}</p>
-                <p className="text-gray-300 mb-4 line-clamp-3">{project.description}</p>
+              <div className="project-content">
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-subtitle">{project.subtitle}</p>
+                <p className="project-description">{project.description}</p>
                 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="project-tech">
                   {project.tech.slice(0, 3).map((tech) => (
-                    <span key={tech} className="bg-orange-500/20 text-orange-300 px-2 py-1 rounded text-xs border border-orange-500/30">
+                    <span key={tech} className="tech-badge-small">
                       {tech}
                     </span>
                   ))}
                   {project.tech.length > 3 && (
-                    <span className="text-orange-300 text-xs px-2 py-1">
+                    <span className="tech-badge-small">
                       +{project.tech.length - 3} more
                     </span>
                   )}
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="project-footer">
                   {!project.isComingSoon ? (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="interactive text-orange-400 hover:text-orange-300 flex items-center gap-2 font-semibold"
+                      className="project-link"
                       onClick={(e) => e.stopPropagation()}
                     >
                       View Live <ArrowRight size={16} />
                     </a>
                   ) : (
-                    <div className="text-amber-400 flex items-center gap-2 font-semibold">
+                    <div className="project-link">
                       <Clock size={16} />
                       In Development
                     </div>
                   )}
-                  <button className="text-gray-400 hover:text-white transition-colors duration-300">
+                  <button className="project-explore">
                     Click to explore →
                   </button>
                 </div>

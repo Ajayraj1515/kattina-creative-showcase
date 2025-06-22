@@ -12,6 +12,7 @@ import LeetCodeSection from '../components/LeetCodeSection';
 import ChatWithMe from '../components/ChatWithMe';
 import LoadingScreen from '../components/LoadingScreen';
 import CustomCursor from '../components/CustomCursor';
+import '../styles/main.css';
 
 const Index = () => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -29,12 +30,11 @@ const Index = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-x-hidden">
+    <div className="relative min-h-screen">
       <CustomCursor />
       <FloatingNav />
       
-      {/* Main content with proper spacing to avoid sidebar overlap */}
-      <main className="relative lg:ml-4">
+      <main className="relative">
         <Hero />
         <About />
         <Skills />
@@ -46,11 +46,10 @@ const Index = () => {
         <ChatWithMe />
       </main>
       
-      {/* Optimized background elements */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/2 w-32 h-32 bg-pink-500/5 rounded-full blur-3xl"></div>
+      <div className="background-elements">
+        <div className="bg-element"></div>
+        <div className="bg-element"></div>
+        <div className="bg-element"></div>
       </div>
     </div>
   );
