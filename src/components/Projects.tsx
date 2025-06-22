@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ArrowRight, Github, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -151,7 +151,7 @@ const Projects = () => {
               <textarea
                 placeholder="Share your thoughts on how this project could be improved..."
                 className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors duration-300"
-                rows="3"
+                rows={3}
               />
               <button className="mt-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:scale-105 transition-all duration-300 interactive">
                 Submit Feedback

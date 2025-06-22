@@ -103,7 +103,7 @@ const ChatWithMe = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Type your message here... I'd love to hear from you!"
                   className="w-full bg-white/10 border border-white/20 rounded-2xl p-4 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors duration-300 resize-none"
-                  rows="4"
+                  rows={4}
                 />
 
                 <div className="flex flex-col sm:flex-row gap-4 items-center">
