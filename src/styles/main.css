@@ -235,7 +235,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Hero Section */
+/* Hero Section - Fixed to horizontal layout */
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -297,14 +297,19 @@ body {
 }
 
 .hero-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
   align-items: center;
-  gap: 48px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .hero-text {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .hero-name {
@@ -332,7 +337,7 @@ body {
   height: 64px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .hero-subtitle {
@@ -352,14 +357,13 @@ body {
 .contact-item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 12px;
   color: #d1d5db;
 }
 
 .hero-buttons {
   display: flex;
-  flex-direction: column;
   gap: 16px;
 }
 
@@ -1238,9 +1242,9 @@ body {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Future Goals Section */
+/* Future Goals Section - Fixed to horizontal layout */
 .goals-list {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -1256,13 +1260,14 @@ body {
 }
 
 .goal-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .goal-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 24px;
+  align-items: center;
 }
 
 .goal-info {
@@ -1285,6 +1290,7 @@ body {
   font-weight: bold;
   color: white;
   transition: color 0.3s ease;
+  margin-bottom: 4px;
 }
 
 .goal-item:hover .goal-details h3 {
@@ -1304,6 +1310,7 @@ body {
 
 .goal-progress {
   text-align: center;
+  min-width: 120px;
 }
 
 .progress-number {
@@ -1319,6 +1326,7 @@ body {
   border-radius: 9999px;
   height: 12px;
   overflow: hidden;
+  margin-bottom: 8px;
 }
 
 .progress-fill {
@@ -1330,7 +1338,6 @@ body {
 .progress-label {
   color: #9ca3af;
   font-size: 14px;
-  margin-top: 8px;
 }
 
 .goal-hover-bg {
@@ -1404,9 +1411,9 @@ body {
   color: #86efac;
 }
 
-/* Learning Timeline Section */
+/* Learning Timeline Section - Fixed to horizontal layout */
 .timeline-container {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
 }
@@ -1427,7 +1434,7 @@ body {
 .timeline-event {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 48px;
 }
 
@@ -1441,6 +1448,7 @@ body {
   border: 4px solid #0f172a;
   z-index: 10;
   transform: translateX(-50%);
+  margin-top: 20px;
 }
 
 .timeline-dot::before {
@@ -1468,11 +1476,12 @@ body {
 }
 
 .timeline-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .timeline-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
@@ -1505,12 +1514,13 @@ body {
 }
 
 .timeline-details {
-  margin-bottom: 12px;
+  grid-column: 1 / -1;
 }
 
 .timeline-institution {
   color: #60a5fa;
   font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .timeline-achievement {
@@ -1579,9 +1589,9 @@ body {
 .stat-green { color: #34d399; }
 .stat-pink { color: #f472b6; }
 
-/* LeetCode Section */
+/* LeetCode Section - Fixed to horizontal layout */
 .leetcode-container {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -1618,10 +1628,11 @@ body {
 }
 
 .leetcode-main {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 48px;
   align-items: center;
-  gap: 32px;
+  margin-bottom: 32px;
 }
 
 .leetcode-logo {
@@ -1688,7 +1699,7 @@ body {
 }
 
 .leetcode-info {
-  text-align: center;
+  text-align: left;
 }
 
 .leetcode-info h3 {
@@ -1714,7 +1725,6 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 32px;
 }
 
 .leetcode-stat {
@@ -1722,6 +1732,7 @@ body {
   border-radius: 12px;
   padding: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
 }
 
 .stat-value {
@@ -1762,7 +1773,6 @@ body {
 }
 
 .leetcode-topics {
-  margin-top: 48px;
   padding-top: 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -2150,7 +2160,21 @@ body {
   }
   
   .hero-content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-text {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-typing {
+    justify-content: center;
+  }
+  
+  .contact-item {
+    justify-content: center;
   }
   
   .about-content {
@@ -2170,11 +2194,22 @@ body {
   }
   
   .goal-content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    text-align: center;
   }
   
   .leetcode-main {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .leetcode-info {
+    text-align: center;
+  }
+  
+  .timeline-header {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
   
   .contact-grid {
