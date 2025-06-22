@@ -49,7 +49,7 @@ const FloatingNav = () => {
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
     >
-      <nav className="flex flex-col space-y-3 bg-white/10 backdrop-blur-xl p-3 rounded-2xl border border-white/20">
+      <nav className="flex flex-col space-y-3 bg-white/10 backdrop-blur-xl p-3 rounded-2xl border border-cyan-500/30">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -58,7 +58,7 @@ const FloatingNav = () => {
               onClick={() => scrollToSection(item.id)}
               className={`group relative p-3 rounded-xl transition-all duration-300 ${
                 activeSection === item.id
-                  ? 'bg-purple-500 text-white scale-110'
+                  ? 'bg-cyan-500 text-white scale-110'
                   : 'text-white/70 hover:text-white hover:bg-white/10 hover:scale-105'
               }`}
               title={item.label}

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Clock } from 'lucide-react';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -23,7 +23,7 @@ const Projects = () => {
         "Dark/Light Theme Toggle",
         "Saved Videos Feature"
       ],
-      color: "from-red-500 to-pink-500"
+      color: "from-red-500 to-rose-500"
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ const Projects = () => {
         "Responsive Design",
         "API Integration"
       ],
-      color: "from-blue-500 to-purple-500"
+      color: "from-blue-500 to-cyan-500"
     },
     {
       id: 3,
@@ -61,7 +61,7 @@ const Projects = () => {
         "One-click Article Access",
         "Modern Styling"
       ],
-      color: "from-green-500 to-blue-500"
+      color: "from-green-500 to-emerald-500"
     },
     {
       id: 4,
@@ -80,7 +80,27 @@ const Projects = () => {
         "Full-stack Integration",
         "Creative UI Design"
       ],
-      color: "from-purple-500 to-pink-500"
+      color: "from-indigo-500 to-purple-500"
+    },
+    {
+      id: 5,
+      title: "Coming Soon...",
+      subtitle: "Next Innovation in Progress",
+      description: "I'm continuously working on new projects and won't stop creating! This space is reserved for my next breakthrough application that's currently in development.",
+      longDescription: "As a passionate developer, I believe in continuous innovation and learning. This placeholder represents my commitment to never stop building, experimenting, and pushing the boundaries of what's possible with technology.",
+      image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800",
+      liveUrl: "#",
+      tech: ["React.js", "Innovation", "Creativity", "Future Tech"],
+      features: [
+        "Cutting-edge Technology",
+        "User-Centric Design",
+        "Performance Optimized",
+        "Scalable Architecture",
+        "Modern UI/UX",
+        "Best Practices"
+      ],
+      color: "from-amber-500 to-orange-500",
+      isComingSoon: true
     }
   ];
 
@@ -103,6 +123,9 @@ const Projects = () => {
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <h2 className="text-4xl font-bold text-white text-center">{project.title}</h2>
+              {project.isComingSoon && (
+                <Clock className="ml-4 text-white" size={32} />
+              )}
             </div>
           </div>
 
@@ -112,16 +135,24 @@ const Projects = () => {
                 <h3 className="text-2xl font-bold text-white mb-4">About This Project</h3>
                 <p className="text-gray-300 mb-6 leading-relaxed">{project.longDescription}</p>
                 
-                <div className="flex gap-4 mb-6">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="interactive bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 flex items-center gap-2"
-                  >
-                    View Live <ArrowRight size={16} />
-                  </a>
-                </div>
+                {!project.isComingSoon && (
+                  <div className="flex gap-4 mb-6">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="interactive bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 flex items-center gap-2"
+                    >
+                      View Live <ArrowRight size={16} />
+                    </a>
+                  </div>
+                )}
+                
+                {project.isComingSoon && (
+                  <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-lg p-4 mb-6">
+                    <p className="text-amber-300 font-semibold">🚀 Exciting things are coming! Stay tuned for updates.</p>
+                  </div>
+                )}
               </div>
 
               <div>
@@ -129,7 +160,7 @@ const Projects = () => {
                 <ul className="space-y-2 mb-6">
                   {project.features.map((feature, index) => (
                     <li key={index} className="text-gray-300 flex items-center gap-2">
-                      <span className="text-purple-400">•</span>
+                      <span className="text-orange-400">•</span>
                       {feature}
                     </li>
                   ))}
@@ -138,7 +169,7 @@ const Projects = () => {
                 <h3 className="text-2xl font-bold text-white mb-4">Technologies Used</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <span key={tech} className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm border border-purple-500/30">
+                    <span key={tech} className="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm border border-orange-500/30">
                       {tech}
                     </span>
                   ))}
@@ -146,17 +177,19 @@ const Projects = () => {
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
-              <h3 className="text-xl font-bold text-white mb-3">💡 Improvement Suggestions</h3>
-              <textarea
-                placeholder="Share your thoughts on how this project could be improved..."
-                className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors duration-300"
-                rows={3}
-              />
-              <button className="mt-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:scale-105 transition-all duration-300 interactive">
-                Submit Feedback
-              </button>
-            </div>
+            {!project.isComingSoon && (
+              <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10">
+                <h3 className="text-xl font-bold text-white mb-3">💡 Improvement Suggestions</h3>
+                <textarea
+                  placeholder="Share your thoughts on how this project could be improved..."
+                  className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors duration-300"
+                  rows={3}
+                />
+                <button className="mt-3 bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-2 rounded-lg text-sm hover:scale-105 transition-all duration-300 interactive">
+                  Submit Feedback
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -168,9 +201,9 @@ const Projects = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            Featured <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
+            Featured <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">Projects</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-6"></div>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Showcasing real-world applications built with modern technologies and best practices
           </p>
@@ -180,7 +213,9 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div 
               key={project.id}
-              className="group bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 transform hover:scale-105 transition-all duration-500 interactive cursor-pointer"
+              className={`group bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 transform hover:scale-105 transition-all duration-500 interactive cursor-pointer ${
+                project.isComingSoon ? 'border-amber-500/30' : ''
+              }`}
               onClick={() => setSelectedProject(project)}
             >
               <div className="relative overflow-hidden">
@@ -191,40 +226,54 @@ const Projects = () => {
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-80 group-hover:opacity-60 transition-opacity duration-300`}></div>
                 <div className="absolute top-4 right-4">
-                  <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm">
-                    {project.tech[0]}
-                  </span>
+                  {project.isComingSoon ? (
+                    <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm flex items-center gap-2">
+                      <Clock size={14} />
+                      Coming Soon
+                    </div>
+                  ) : (
+                    <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm">
+                      {project.tech[0]}
+                    </span>
+                  )}
                 </div>
               </div>
 
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-purple-300 text-sm mb-3">{project.subtitle}</p>
+                <p className="text-orange-300 text-sm mb-3">{project.subtitle}</p>
                 <p className="text-gray-300 mb-4 line-clamp-3">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.slice(0, 3).map((tech) => (
-                    <span key={tech} className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs border border-purple-500/30">
+                    <span key={tech} className="bg-orange-500/20 text-orange-300 px-2 py-1 rounded text-xs border border-orange-500/30">
                       {tech}
                     </span>
                   ))}
                   {project.tech.length > 3 && (
-                    <span className="text-purple-300 text-xs px-2 py-1">
+                    <span className="text-orange-300 text-xs px-2 py-1">
                       +{project.tech.length - 3} more
                     </span>
                   )}
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="interactive text-purple-400 hover:text-purple-300 flex items-center gap-2 font-semibold"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    View Live <ArrowRight size={16} />
-                  </a>
+                  {!project.isComingSoon ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="interactive text-orange-400 hover:text-orange-300 flex items-center gap-2 font-semibold"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      View Live <ArrowRight size={16} />
+                    </a>
+                  ) : (
+                    <div className="text-amber-400 flex items-center gap-2 font-semibold">
+                      <Clock size={16} />
+                      In Development
+                    </div>
+                  )}
                   <button className="text-gray-400 hover:text-white transition-colors duration-300">
                     Click to explore →
                   </button>

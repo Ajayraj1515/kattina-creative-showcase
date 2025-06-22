@@ -58,9 +58,9 @@ const WhatICanDo = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            What I Can <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Do</span>
+            What I Can <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Do</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-500 mx-auto mb-6"></div>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             My core strengths and capabilities that I bring to every project
           </p>
@@ -70,14 +70,14 @@ const WhatICanDo = () => {
           {capabilities.map((capability, index) => (
             <div 
               key={index}
-              className="group bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 interactive"
+              className="group bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-violet-500/30 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 interactive"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="text-center">
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   {capability.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300">
+                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-violet-300 transition-colors duration-300">
                   {capability.title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
@@ -88,7 +88,7 @@ const WhatICanDo = () => {
                   {capability.skills.map((skill, skillIndex) => (
                     <div 
                       key={skillIndex}
-                      className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 text-purple-300 px-3 py-1 rounded-full text-xs border border-purple-500/30 inline-block mx-1"
+                      className="bg-gradient-to-r from-violet-500/20 to-purple-500/20 text-violet-300 px-3 py-1 rounded-full text-xs border border-violet-500/30 inline-block mx-1"
                     >
                       {skill}
                     </div>
@@ -97,21 +97,21 @@ const WhatICanDo = () => {
               </div>
 
               {/* Hover effect background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
             </div>
           ))}
         </div>
 
         {/* Call to action */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-xl rounded-2xl p-8 border border-purple-500/30 max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-violet-500/20 to-purple-500/20 backdrop-blur-xl rounded-2xl p-8 border border-violet-500/30 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>
             <p className="text-gray-300 mb-6">
               Let's collaborate and turn your ideas into reality with clean, efficient, and scalable solutions.
             </p>
             <a
               href="#chat"
-              className="interactive bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl inline-flex items-center gap-2"
+              className="interactive bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl inline-flex items-center gap-2"
             >
               Let's Connect 🚀
             </a>
